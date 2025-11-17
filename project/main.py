@@ -1,18 +1,14 @@
 from pipeline import Experiment
 from data.dataloaders import (
-    framevideostack_trainloader,
-    framevideostack_testloader,
-    frameimage_trainloader,
-    frameimage_testloader,
-    frameflow_testloader,
-    frameflow_valloader,
-    frameflow_trainloader
+  cifar_image_testloader,
+  cifar_image_trainloader,
+  cifar_image_valloader
 )
-from models.early_fusion import EarlyFusion
+
+
 #from models.late_fusion import LateFusion
 from models.single_frame import SingleFrameCNN
-from models.C3D import C3D
-from models.two_stream.vgg8 import TemporalStreamVGG, SpatialStreamVGG
+
 import torch as t
 
 from config import settings

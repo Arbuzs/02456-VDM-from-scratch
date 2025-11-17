@@ -252,7 +252,7 @@ class AttentionBlock(nn.Module):
         assert n_channels % n_heads == 0
         self.layers = nn.Sequential(
             nn.GroupNorm(num_groups=norm_groups, num_channels=n_channels),
-            nn.Conv2d(n_channels, 3 * n_channels, kernel_size=1),  # (B, 3 * C, H, W)
+            nn.Conv2d(n_channels, 3 * n_channels, kernel_size=1),  # (B, 3 * C, H, W).             
             Attention(n_heads),
             zero_init(nn.Conv2d(n_channels, n_channels, kernel_size=1)),
         )
