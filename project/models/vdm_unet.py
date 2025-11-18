@@ -2,7 +2,13 @@ import numpy as np
 import torch
 from torch import einsum, nn, pi, softmax
 
-from utils import zero_init
+# from utils import zero_init
+@torch.no_grad()
+def zero_init(module: nn.Module) -> nn.Module:
+    """Sets to zero all the parameters of a module, and returns the module."""
+    for p in module.parameters():
+        nn.init.zeros_(p.data)
+    return module
 
 
 class UNetVDM(nn.Module):

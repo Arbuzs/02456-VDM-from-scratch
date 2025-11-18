@@ -15,7 +15,7 @@ class Settings(BaseSettings):
     # seed: int = 42
     log_level: int = logging.INFO
 
-    model_config = SettingsConfigDict(env_file='.env') # optional prefix for environment variables
+    model_config = SettingsConfigDict(env_file='project/.env') # optional prefix for environment variables
 
 settings = Settings()
 

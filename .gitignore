@@ -4,3 +4,6 @@ uv.lock
 pyproject.toml
 .python-version
 config.py
+logs
+wandb
+project/__pycache__
