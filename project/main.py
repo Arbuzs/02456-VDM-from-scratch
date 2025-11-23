@@ -41,29 +41,31 @@ class TrainConfig:
     n_sample_steps: int
     clip_samples: bool
     n_samples_to_log: int
+    sample_interval: int
     
     def __init__(self,
-                 embedding_dim: int = 64,   
-                 n_blocks: int = 4,         
-                 n_attention_heads: int = 4,
-                 dropout_prob: float = 0.1,
-                 norm_groups: int = 32,
-                 input_channels: int = 3, 
-                 use_fourier_features: bool = True,
-                 attention_everywhere: bool = False,
-                 batch_size: int = 128,      
-                 noise_schedule: str = 'learned_linear',
-                 gamma_min: float = -13.3,
-                 gamma_max: float = 5.0,
-                 antithetic_time_sampling: bool = True,
-                 lr: float = 2e-4,
-                 weight_decay: float = 0.0,
-                 clip_grad_norm: bool = False,
-                 
-                 # --- SAMPLING DEFAULTS ---
-                 n_sample_steps: int = 100,
-                 clip_samples: bool = True,
-                 n_samples_to_log: int = 9):
+                embedding_dim: int = 32,   
+                n_blocks: int = 2,         
+                n_attention_heads: int = 1,
+                dropout_prob: float = 0.1,
+                norm_groups: int = 32,
+                input_channels: int = 3, 
+                use_fourier_features: bool = True,
+                attention_everywhere: bool = False,
+                batch_size: int = 128,      
+                noise_schedule: str = 'learned_linear',
+                gamma_min: float = -13.3,
+                gamma_max: float = 5.0,
+                antithetic_time_sampling: bool = True,
+                lr: float = 2e-4,
+                weight_decay: float = 0.0,
+                clip_grad_norm: bool = False,
+                
+                # --- SAMPLING DEFAULTS ---
+                n_sample_steps: int = 100,
+                clip_samples: bool = True,
+                n_samples_to_log: int = 9,
+                sample_interval: int = 5): # Log samples every "sample_interval" epochs
         
         self.embedding_dim = embedding_dim
         self.n_blocks = n_blocks
@@ -86,6 +88,7 @@ class TrainConfig:
         self.n_sample_steps = n_sample_steps
         self.clip_samples = clip_samples
         self.n_samples_to_log = n_samples_to_log
+        self.sample_interval = sample_interval
 
 # ---
 # 2. Setup Experiment Parameters
@@ -95,6 +98,7 @@ cfg = TrainConfig()
 
 # Define dataset-specifics
 project_name = 'VDM-from-scratch'
+epochs = 10
 epochs = 2
 dataset = settings.root_dir.split('/')[-1]
 image_shape = (3, 32, 32) # For CIFAR-10
@@ -129,6 +133,7 @@ diffusion_experiment = Experiment(
     name='VDM_CIFAR10_Run',
     config={
         'train_loader': cifar_image_trainloader,
+        'val_loader': cifar_image_valloader,
         'test_loader': cifar_image_testloader,
         'val_loader':cifar_image_valloader,
         'model': vdm_model,

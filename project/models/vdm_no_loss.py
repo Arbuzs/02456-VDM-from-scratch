@@ -35,7 +35,6 @@ class VDM(nn.Module):
     def device(self):
         return next(self.model.parameters()).device
 
-    # --- SAMPLING FUNCTION ---
     @torch.no_grad()
     def sample_p_s_t(self, z, t, s, clip_samples):
         """Samples from p(z_s | z_t, x). Used for standard ancestral sampling."""
@@ -57,6 +56,7 @@ class VDM(nn.Module):
         scale = sigma_s * sqrt(c)
         return mean + scale * torch.randn_like(z)
 
+    # Generating from pure noise function
     @torch.no_grad()
     def sample(self, batch_size, n_sample_steps, clip_samples):
         """The main sampling entry point."""
@@ -67,7 +67,52 @@ class VDM(nn.Module):
         logprobs = self.log_probs_x_z0(z_0=z)  # (B, C, H, W, vocab_size)
         x = argmax(logprobs, dim=-1)  # (B, C, H, W)
         return x.float() / (self.vocab_size - 1)  # normalize to [0, 1]
-    # --- END OF SAMPLING ---
+
+    # Reconstruction sampling function
+    @torch.no_grad()
+    def reconstruct(self, x, n_sample_steps, clip_samples, t_start=1.0):
+        """
+        Takes a batch of clean images x, adds noise up to t_start, 
+        and then samples back down to t=0.
+        
+        Args:
+            x: Batch of images in [0, 1]
+            n_sample_steps: Number of steps for the reverse process
+            t_start: Time to add noise to (default 1.0 = pure noise)
+        
+        Returns:
+            z_t_viz: The noisy image at t_start (visualized in [0, 1])
+            x_recon: The reconstructed image in [0, 1]
+        """
+        # Preprocess: [0, 1] -> [-1, 1]
+        x_clean = 2 * x - 1
+        batch_size = x.shape[0]
+
+        # Add noise up to t_start
+        # Create a tensor of times [t_start, t_start, ...]
+        times = torch.tensor([t_start] * batch_size, device=self.device)
+        noise = torch.randn_like(x_clean)
+        
+        # z_t is the noisy latent at time t_start
+        z_t, _ = self.sample_q_t_0(x_clean, times, noise)
+        
+        # Define the steps for the reverse process (t_start -> 0)
+        steps = linspace(t_start, 0.0, n_sample_steps + 1, device=self.device)
+        
+        # Run reverse denoising process
+        z = z_t.clone()
+        for i in trange(n_sample_steps, desc="reconstructing"):
+            z = self.sample_p_s_t(z, steps[i], steps[i + 1], clip_samples)
+            
+        # Postprocess for output: Latent -> Probabilities -> Argmax -> [0, 1]
+        logprobs = self.log_probs_x_z0(z_0=z)
+        x_recon = argmax(logprobs, dim=-1).float() / (self.vocab_size - 1)
+        
+        # Helper to visualize the noisy state z_t in [0, 1] roughly
+        # We just clamp it for visualization, though it is technically Gaussian noise
+        z_t_viz = (z_t.clamp(-1, 1) + 1) / 2
+        
+        return z_t_viz, x_recon
 
     def sample_q_t_0(self, x, times, noise=None):
         """Samples from the distributions q(x_t | x_0) at the given time steps."""

@@ -4,6 +4,8 @@ from utils.logger import get_logger
 from config import settings
 from typing import Dict, Any
 from rich.progress import Progress
+import matplotlib.pyplot as plt
+# from metrics.classification import Accuracy # No longer needed
 from metrics.VDM_metrics import FIDScore, IS, SNR, NLL, BPD
 
 
@@ -103,6 +105,7 @@ class Experiment:
         
         with t.no_grad():
             for X in self.config['val_loader']:
+            for X in self.config['val_loader']:
                 X = X.to(settings.device)
                 batch = (X, None) # Dataloader only yields X
 
@@ -122,18 +125,21 @@ class Experiment:
                 num_batches += 1
                 self.progress.update(self.task_val, advance=1)
         
+        if settings.device == 'cuda':
+            t.cuda.empty_cache()
+        
         # Return the average of all metrics over the epoch
         avg_metrics = {f'val/{key}': value / num_batches for key, value in total_metrics.items()}
         return avg_metrics
 
-    # --- SAMPLING FUNCTION ---
+    # SAMPLING FUNCTION (From pure noise)
     def sample_and_log_images(self, epoch):
         logger.info(f"Sampling images for epoch {epoch}...")
         model = self.config['model']
         model.eval() # Set model to evaluation mode
 
         # Get sampling parameters from config
-        n_samples = self.config.get('n_samples_to_log', 9)
+        n_samples = self.config.get('n_samples_to_log', 3)
         n_steps = self.config.get('n_sample_steps', 100)
         clip = self.config.get('clip_samples', True)
         
@@ -143,14 +149,121 @@ class Experiment:
                 n_sample_steps=n_steps, 
                 clip_samples=clip
             )
-            # .cpu() is good practice before logging
             sample_images = sample_images.cpu() 
+        
+        if settings.device == 'cuda':
+            t.cuda.empty_cache()
 
         # Return a dictionary formatted for wandb.log()
         return {
             "epoch": epoch,
-            "sampled_images": [wandb.Image(img) for img in sample_images]
+            "generated_images": [wandb.Image(img) for img in sample_images]
         }
+
+    # SAMPLING FUNCTION (From real images)
+    def reconstruct_and_log_images(self, epoch):
+        logger.info(f"Reconstructing images for epoch {epoch}...")
+        model = self.config['model']
+        model.eval()
+        
+        # Get batch of real images from validation set
+        # We just grab the first batch in the iterator
+        val_loader = self.config['val_loader']
+        x_real_batch = next(iter(val_loader))
+        x_real_batch = x_real_batch.to(settings.device)
+
+        n_samples = self.config.get('n_samples_to_log', 3)
+        # Take the first N images from the batch validation set
+        x_real = x_real_batch[:n_samples]
+
+        n_steps = self.config.get('n_sample_steps', 100)
+        clip = self.config.get('clip_samples', True)
+        
+        with t.no_grad():
+            # Call the new reconstruct method
+            # x_noisy will be the image at t=1.0 (pure noise)
+            # x_recon will be the image after denoising
+            x_noisy, x_recon = model.reconstruct(
+                x=x_real,
+                n_sample_steps=n_steps,
+                clip_samples=clip,
+                t_start=1.0 # Full reconstruction from pure noise
+            )
+            
+            x_real = x_real.cpu()
+            x_noisy = x_noisy.cpu()
+            x_recon = x_recon.cpu()
+
+        # Combine images side-by-side for easier comparison
+        # Format: [Real Image] [Noisy Latent] [Reconstruction]
+        # We concatenate along the width dimension (dim=2 for C,H,W or dim=3 for B,C,H,W)
+        combined_images = t.cat([x_real, x_noisy, x_recon], dim=3)
+
+        return {
+            "epoch": epoch,
+            "reconstructions": [wandb.Image(img, caption="Real | Noisy | Recon") for img in combined_images]
+        }
+
+    def log_noise_schedule(self, epoch):
+        model = self.config['model']
+        model.eval()
+        
+        # Create time axis from 0 to 1
+        # Using 100 points to make it smooth (in case of using non-linear later on)
+        t_vals = t.linspace(0, 1, 100, device=settings.device)
+        
+        # Get the Log-SNR (gamma) from the model
+        with t.no_grad():
+            gamma_vals = model.gamma(t_vals)
+            
+        # Move to CPU for plotting
+        t_cpu = t_vals.cpu().numpy()
+        gamma_cpu = -gamma_vals.cpu().numpy()
+        
+        # Create the Plot using Matplotlib
+        fig, ax = plt.subplots(figsize=(6, 4))
+        ax.plot(t_cpu, gamma_cpu, label=f"Epoch {epoch}")
+        ax.set_title("Learned Noise Schedule (Log-SNR)")
+        ax.set_xlabel("Time (t)")
+        ax.set_ylabel("Log-SNR $\gamma(t)$")
+        ax.grid(True, which='both', linestyle='--', alpha=0.7)
+        ax.legend()
+        
+        # Convert to WandB Image
+        plot_image = wandb.Image(fig)
+        
+        # Close the plot to save memory
+        plt.close(fig)
+        
+        return {"noise_schedule_plot": plot_image}
+
+    def save_checkpoint(self, epoch, metrics, is_best=False):
+        """
+        Saves model and optimizer state. 
+        Saves 'last.pth' every call, and 'best.pth' if is_best=True.
+        """
+        # Create directory: checkpoints/{Run_Name}
+        ckpt_dir = f"results/checkpoints/{self.name}"
+        os.makedirs(ckpt_dir, exist_ok=True)
+        
+        # Prepare state dict
+        # We assume 'model' and 'optimizer' are in config
+        state = {
+            'epoch': epoch,
+            'model_state_dict': self.config['model'].state_dict(),
+            'optimizer_state_dict': self.config['optimizer'].state_dict(),
+            'metrics': metrics,
+        }
+        
+        # Save the current latest checkpoint
+        last_path = os.path.join(ckpt_dir, "last.pth")
+        t.save(state, last_path)
+        
+        # Save the checkpoint with best BPD
+        if is_best:
+            best_path = os.path.join(ckpt_dir, "best.pth")
+            t.save(state, best_path)
+            logger.info(f"Saved new best model (BPD: {metrics.get('val/bpd', 'N/A'):.4f})")
 
     def test_evaluation(self):
         """
@@ -286,6 +399,13 @@ class Experiment:
         return eval_results
 
     def run(self):
+        # --- ADD THIS ---
+        print(f"DEBUG CHECK -> Model Config: {self.config.get('embedding_dim')}")
+        print(f"DEBUG CHECK -> Blocks: {self.config.get('n_blocks')}")
+        # Check the ACTUAL batch size of the loader
+        print(f"DEBUG CHECK -> Batch Size: {self.config['train_loader'].batch_size}") 
+        # ----------------
+
         logger.info("Initializing Weights & Biases run")
         self.experiment = wandb.init(
             project = self.project_name,
@@ -306,6 +426,9 @@ class Experiment:
         self.config['model'].to(settings.device)
         self.config['loss_function'].to(settings.device)
 
+        # Get the sample interval
+        sample_interval = self.config.get('sample_interval', 10)
+
         try:
             for epoch in range(1, self.config['epochs'] + 1):
                 train_results = self.train()
@@ -314,10 +437,35 @@ class Experiment:
                 # --- LOGGING ---
                 # Create a single dict to log
                 log_data = train_results | test_results
+
+                # Saving model checkpoint
+                current_bpd = test_results.get('val/bpd', float('inf'))
+                is_best = False
+                if current_bpd < self.best_val_bpd:
+                    self.best_val_bpd = current_bpd
+                    is_best = True
+
+                # Overwrites the last.pth with the current model and updates best.pth if we improved bpd
+                self.save_checkpoint(epoch, log_data, is_best=is_best)
+
+                is_first = (epoch == 1)
+                is_interval = (epoch % sample_interval == 0)
+                is_last = (epoch == self.config['epochs'])
                 
-                # Sample and add images to the log data
-                image_log = self.sample_and_log_images(epoch)
-                log_data.update(image_log)
+                should_sample = is_first or is_interval or is_last
+
+                if should_sample:
+                    # Log the log SNR against t plot
+                    schedule_log = self.log_noise_schedule(epoch)
+                    log_data.update(schedule_log)
+                    
+                    # Generate images from noise and add to the log data
+                    gen_image_log = self.sample_and_log_images(epoch)
+                    log_data.update(gen_image_log)
+
+                    # Reconstruct images and add to the log data
+                    recon_image_log = self.reconstruct_and_log_images(epoch)
+                    log_data.update(recon_image_log)
                 
                 # Log everything for this epoch
                 self.experiment.log(log_data)
