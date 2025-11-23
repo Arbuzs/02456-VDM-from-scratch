@@ -256,6 +256,6 @@ BPD = BitsPerDimension
 
 __all__ = [
     'FID', 'IS', 'SNR', 'NLL', 'BPD',
-    'FIDScore', 'InceptionScore', 'SignalToNoiseRatio',
+    'FIDScore', 'InceptionScoreMetric', 'SignalToNoiseRatio',
     'NegativeLogLikelihood', 'BitsPerDimension',
 ]

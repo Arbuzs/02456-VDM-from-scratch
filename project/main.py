@@ -136,8 +136,8 @@ diffusion_experiment = Experiment(
         'optimizer': optimizer,
         'epochs': epochs,
         'dataset': dataset,
-        'n_eval_samples': 20,      # How many samples to generate
-        'eval_batch_size': 10,        # Batch size for evaluation
+        'n_eval_samples': 20,     
+        'eval_batch_size': 10,    
         'n_sample_steps': 100,  
         **cfg.__dict__ # Log all config parameters to wandb
     },
