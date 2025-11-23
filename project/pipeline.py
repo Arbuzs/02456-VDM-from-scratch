@@ -1,3 +1,4 @@
+import os
 import torch as t
 import wandb
 from utils.logger import get_logger
@@ -37,7 +38,9 @@ class Experiment:
         self.snr_metric_test = SNR()
         self.nll_metric_test = NLL()
         
-        
+        # For tracking the best model
+        self.best_val_bpd = float('inf')
+
         self.progress = Progress()
         self.task = self.progress.add_task(
             f"[red]Running {self.config['epochs']} epochs...",
@@ -53,6 +56,7 @@ class Experiment:
             "[blue]Validating epoch...",
             total=len(self.config['val_loader'])
             )
+
         self.task_test = self.progress.add_task(
             "[yellow]Testing model...",
             total=len(self.config['test_loader'])
@@ -104,7 +108,6 @@ class Experiment:
         num_batches = 0
         
         with t.no_grad():
-            for X in self.config['val_loader']:
             for X in self.config['val_loader']:
                 X = X.to(settings.device)
                 batch = (X, None) # Dataloader only yields X
@@ -366,7 +369,7 @@ class Experiment:
         logger.info("Computing evaluation metrics...")
         eval_results = {}
         
-                # FID and IS
+        # FID and IS
         logger.info("Computing FID...")
         for i in range(0, min(len(real_images), len(generated_images)), eval_batch_size):
             real_batch = real_images[i:i+eval_batch_size].to(settings.device)
@@ -394,17 +397,10 @@ class Experiment:
         eval_results['test/is_mean'] = is_mean
         eval_results['test/snr_mean_db'] = snr_mean
         eval_results['test/snr_std_db'] = snr_std
-        
-      
+    
         return eval_results
 
     def run(self):
-        # --- ADD THIS ---
-        print(f"DEBUG CHECK -> Model Config: {self.config.get('embedding_dim')}")
-        print(f"DEBUG CHECK -> Blocks: {self.config.get('n_blocks')}")
-        # Check the ACTUAL batch size of the loader
-        print(f"DEBUG CHECK -> Batch Size: {self.config['train_loader'].batch_size}") 
-        # ----------------
 
         logger.info("Initializing Weights & Biases run")
         self.experiment = wandb.init(
@@ -432,14 +428,14 @@ class Experiment:
         try:
             for epoch in range(1, self.config['epochs'] + 1):
                 train_results = self.train()
-                test_results = self.eval()
+                val_results = self.eval()
                 
                 # --- LOGGING ---
                 # Create a single dict to log
-                log_data = train_results | test_results
+                log_data = train_results | val_results
 
                 # Saving model checkpoint
-                current_bpd = test_results.get('val/bpd', float('inf'))
+                current_bpd = val_results.get('val/bpd', float('inf'))
                 is_best = False
                 if current_bpd < self.best_val_bpd:
                     self.best_val_bpd = current_bpd

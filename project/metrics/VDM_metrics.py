@@ -2,7 +2,7 @@ import torch
 import torch.nn as nn
 import torch.nn.functional as F
 from torchvision import models
-from ignite import metrics
+import ignite.metrics as metrics
 import numpy as np
 from scipy.stats import entropy
 from scipy import linalg
