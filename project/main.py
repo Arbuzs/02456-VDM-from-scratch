@@ -44,9 +44,9 @@ class TrainConfig:
     sample_interval: int
     
     def __init__(self,
-                embedding_dim: int = 32,   
-                n_blocks: int = 2,         
-                n_attention_heads: int = 1,
+                embedding_dim: int = 128,   
+                n_blocks: int = 4,
+                n_attention_heads: int = 4,
                 dropout_prob: float = 0.1,
                 norm_groups: int = 32,
                 input_channels: int = 3, 
@@ -65,7 +65,7 @@ class TrainConfig:
                 n_sample_steps: int = 100,
                 clip_samples: bool = True,
                 n_samples_to_log: int = 9,
-                sample_interval: int = 5): # Log samples every "sample_interval" epochs
+                sample_interval: int = 10): # Log samples every "sample_interval" epochs
         
         self.embedding_dim = embedding_dim
         self.n_blocks = n_blocks
@@ -98,8 +98,7 @@ cfg = TrainConfig()
 
 # Define dataset-specifics
 project_name = 'VDM-from-scratch'
-epochs = 10
-epochs = 2
+epochs = 200
 dataset = settings.root_dir.split('/')[-1]
 image_shape = (3, 32, 32) # For CIFAR-10
 
@@ -133,7 +132,6 @@ diffusion_experiment = Experiment(
     name='VDM_CIFAR10_Run',
     config={
         'train_loader': cifar_image_trainloader,
-        'val_loader': cifar_image_valloader,
         'test_loader': cifar_image_testloader,
         'val_loader':cifar_image_valloader,
         'model': vdm_model,
@@ -141,9 +139,9 @@ diffusion_experiment = Experiment(
         'optimizer': optimizer,
         'epochs': epochs,
         'dataset': dataset,
-        'n_eval_samples': 20,     
-        'eval_batch_size': 10,    
-        'n_sample_steps': 100,  
+        'n_eval_samples': 200,     
+        'eval_batch_size': 20,    
+        'n_sample_steps': 100,
         **cfg.__dict__ # Log all config parameters to wandb
     },
 )

@@ -246,7 +246,7 @@ class Experiment:
         Saves 'last.pth' every call, and 'best.pth' if is_best=True.
         """
         # Create directory: checkpoints/{Run_Name}
-        ckpt_dir = f"results/checkpoints/{self.name}"
+        ckpt_dir = f"project/results/checkpoints/{self.name}"
         os.makedirs(ckpt_dir, exist_ok=True)
         
         # Prepare state dict
