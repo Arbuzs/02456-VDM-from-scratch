@@ -4,7 +4,8 @@ from dataclasses import dataclass
 from pipeline import Experiment
 from data.dataloaders import (
     cifar_image_trainloader,
-    cifar_image_testloader
+    cifar_image_testloader,
+    cifar_image_valloader
 )
 from models.vdm_unet import UNetVDM
 from models.vdm_no_loss import VDM
@@ -94,7 +95,7 @@ cfg = TrainConfig()
 
 # Define dataset-specifics
 project_name = 'VDM-from-scratch'
-epochs = 50
+epochs = 2
 dataset = settings.root_dir.split('/')[-1]
 image_shape = (3, 32, 32) # For CIFAR-10
 
@@ -129,11 +130,15 @@ diffusion_experiment = Experiment(
     config={
         'train_loader': cifar_image_trainloader,
         'test_loader': cifar_image_testloader,
+        'val_loader':cifar_image_valloader,
         'model': vdm_model,
         'loss_function': loss_function, 
         'optimizer': optimizer,
         'epochs': epochs,
         'dataset': dataset,
+        'n_eval_samples': 20,      # How many samples to generate
+        'eval_batch_size': 10,        # Batch size for evaluation
+        'n_sample_steps': 100,  
         **cfg.__dict__ # Log all config parameters to wandb
     },
 )
