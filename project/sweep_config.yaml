@@ -1,0 +1,37 @@
+program: project/main_sweep.py # The script to execute for each run
+method: bayes # Search method: random, grid, or bayes (recommended)
+metric:
+  name: val/bpd # Metric to minimize (Validation Bits Per Dimension)
+  goal: minimize # Goal is to reduce the BPD
+
+parameters:
+  # 1. Optimizers & Regularization
+  lr:
+    distribution: log_uniform_values
+    min: 1e-5
+    max: 1e-3
+  dropout_prob:
+    values: [0.0, 0.1, 0.2]
+  weight_decay:
+    values: [0.0, 1e-5]
+
+  # 2. Architectural Capacity (The UNetVDM size)
+  embedding_dim:
+    values: [64, 96, 128] # Testing different widths
+  n_blocks:
+    values: [2, 3, 4] # Testing different depths
+  attention_everywhere:
+    values: [True, False] # Testing selective attention
+  n_attention_heads:
+    values: [4, 8] # Added to test two common head counts
+  
+
+  # 3. VDM Specifics
+  noise_schedule:
+    value: learned_linear # Keep this fixed for now
+  
+  # 4. Fixed run parameters (optional, but ensures consistency)
+  epochs:
+    value: 2
+  batch_size:
+    value: 128

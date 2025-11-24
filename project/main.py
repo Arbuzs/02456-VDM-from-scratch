@@ -44,7 +44,7 @@ class TrainConfig:
     sample_interval: int
     
     def __init__(self,
-                embedding_dim: int = 128,   
+                embedding_dim: int = 128,
                 n_blocks: int = 4,
                 n_attention_heads: int = 4,
                 dropout_prob: float = 0.1,
@@ -52,7 +52,7 @@ class TrainConfig:
                 input_channels: int = 3, 
                 use_fourier_features: bool = True,
                 attention_everywhere: bool = False,
-                batch_size: int = 128,      
+                batch_size: int = 128,
                 noise_schedule: str = 'learned_linear',
                 gamma_min: float = -13.3,
                 gamma_max: float = 5.0,

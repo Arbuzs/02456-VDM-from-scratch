@@ -12,7 +12,7 @@
 #BSUB -R "rusage[mem=20GB]"
 
 # Max wall clock time (increased for training)
-#BSUB -W 6:00
+#BSUB -W 10:00
 
 # Output files
 #BSUB -o Output_%J.out
