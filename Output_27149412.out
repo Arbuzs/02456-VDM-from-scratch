@@ -1,0 +1,57 @@
+==========================================
+Job ID: 27149412
+Job Name: VDM-From-Scratch
+Start Time: Sun Nov 23 20:44:06 CET 2025
+Running on host: n-62-20-10
+Working directory: /zhome/45/a/168203/02456-VDM-from-scratch
+==========================================
+Python path:
+/zhome/45/a/168203/miniconda3/envs/vdm_env/bin/python
+Starting training...
+Setting up experiment...
+Starting experiment run...
+[11/23/25 20:44:25] INFO     INFO:pipeline:Initializing Weights  pipeline.py:405
+                             & Biases run                                       
+[11/23/25 20:44:26] INFO     INFO:pipeline:Starting experiment   pipeline.py:414
+                    INFO     INFO:pipeline:Clearing CUDA         pipeline.py:418
+                             cache...                                           
+                    INFO     INFO:pipeline:Moving model and loss pipeline.py:421
+                             function to GPU                                    
+[11/23/25 20:46:24] INFO     INFO:pipeline:Saved new best model  pipeline.py:269
+                             (BPD: 4.7454)                                      
+                    INFO     INFO:pipeline:Sampling images for   pipeline.py:140
+                             epoch 1...                                         
+[11/23/25 20:46:25] INFO     INFO:pipeline:Reconstructing images pipeline.py:168
+                             for epoch 1...                                     
+[11/23/25 20:48:24] INFO     INFO:pipeline:Saved new best model  pipeline.py:269
+                             (BPD: 4.0055)                                      
+[11/23/25 20:50:23] INFO     INFO:pipeline:Saved new best model  pipeline.py:269
+                             (BPD: 3.8420)                                      
+[11/23/25 20:52:21] INFO     INFO:pipeline:Saved new best model  pipeline.py:269
+                             (BPD: 3.7599)                                      
+[11/23/25 20:54:19] INFO     INFO:pipeline:Saved new best model  pipeline.py:269
+                             (BPD: 3.6900)                                      
+[11/23/25 20:56:17] INFO     INFO:pipeline:Saved new best model  pipeline.py:269
+                             (BPD: 3.6568)                                      
+[11/23/25 20:58:15] INFO     INFO:pipeline:Saved new best model  pipeline.py:269
+                             (BPD: 3.6240)                                      
+[11/23/25 21:00:13] INFO     INFO:pipeline:Saved new best model  pipeline.py:269
+                             (BPD: 3.6107)                                      
+[11/23/25 21:02:11] INFO     INFO:pipeline:Saved new best model  pipeline.py:269
+                             (BPD: 3.5681)                                      
+[11/23/25 21:04:09] INFO     INFO:pipeline:Saved new best model  pipeline.py:269
+                             (BPD: 3.5564)                                      
+                    INFO     INFO:pipeline:Sampling images for   pipeline.py:140
+                             epoch 10...                                        
+[11/23/25 21:04:10] INFO     INFO:pipeline:Reconstructing images pipeline.py:168
+                             for epoch 10...                                    
+[11/23/25 21:06:09] INFO     INFO:pipeline:Saved new best model  pipeline.py:269
+                             (BPD: 3.5462)                                      
+[11/23/25 21:08:07] INFO     INFO:pipeline:Saved new best model  pipeline.py:269
+                             (BPD: 3.5292)                                      
+[11/23/25 21:10:05] INFO     INFO:pipeline:Saved new best model  pipeline.py:269
+                             (BPD: 3.5143)                                      
+[11/23/25 21:12:03] INFO     INFO:pipeline:Saved new best model  pipeline.py:269
+                             (BPD: 3.4997)                                      
+[11/23/25 21:14:01] INFO     INFO:pipeline:Saved new best model  pipeline.py:269
+                             (BPD: 3.4967)                                      

@@ -27,26 +27,32 @@ echo "Running on host: $(hostname)"
 echo "Working directory: $(pwd)"
 echo "=========================================="
 
-# Load any necessary modules (if needed)
-# module load python/3.11
-# module load cuda/11.8
+# --- FIX: ENSURE CONDA IS INITIALIZED AND ENVIRONMENT IS ACTIVATED ---
 
-# Print GPU info
-nvidia-smi
+# Source the main bash configuration to ensure 'conda' command is available.
+# The exact path may vary (e.g., ~/.bashrc or ~/.zshrc)
+source $HOME/.bashrc 
 
-# Print Python environment info
-echo "Python version:"
-python --version
+# Activate the Conda environment
+conda activate vdm_env
 
-echo "UV version:"
-uv --version
+# --- RUN SCRIPT ---
 
-# Run the main script with error handling
+# Print Python environment info (Use 'which' to confirm python is from vdm_env)
+echo "Python path:"
+which python
+
+# Run the main script using the Python interpreter from the activated environment.
 echo "Starting training..."
-uv run main.py
+python project/main.py
 
-# Capture exit code
+# --- CLEANUP ---
+
+# Capture exit code from the python script
 EXIT_CODE=$?
+
+# Deactivate environment
+conda deactivate
 
 # Print completion info
 echo "=========================================="

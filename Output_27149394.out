@@ -1,0 +1,53 @@
+==========================================
+Job ID: 27149394
+Job Name: VDM-From-Scratch
+Start Time: Sun Nov 23 20:36:52 CET 2025
+Running on host: n-62-20-10
+Working directory: /zhome/45/a/168203/02456-VDM-from-scratch
+==========================================
+Python path:
+/zhome/45/a/168203/miniconda3/envs/vdm_env/bin/python
+Starting training...
+Setting up experiment...
+Starting experiment run...
+[11/23/25 20:37:58] INFO     INFO:pipeline:Initializing Weights  pipeline.py:405
+                             & Biases run                                       
+[11/23/25 20:38:00] INFO     INFO:pipeline:Starting experiment   pipeline.py:414
+                    INFO     INFO:pipeline:Clearing CUDA         pipeline.py:418
+                             cache...                                           
+                    INFO     INFO:pipeline:Moving model and loss pipeline.py:421
+                             function to GPU                                    
+[11/23/25 20:40:07] INFO     INFO:pipeline:Saved new best model  pipeline.py:269
+                             (BPD: 4.6835)                                      
+[11/23/25 20:40:08] INFO     INFO:pipeline:Sampling images for   pipeline.py:140
+                             epoch 1...                                         
+[11/23/25 20:40:09] INFO     INFO:pipeline:Reconstructing images pipeline.py:168
+                             for epoch 1...                                     
+[11/23/25 20:40:10] INFO     INFO:pipeline:Training complete.    pipeline.py:474
+                             Running final evaluation...                        
+                    INFO     INFO:pipeline:Running final         pipeline.py:316
+                             evaluation on test set...                          
+                    INFO     INFO:pipeline:Collecting real       pipeline.py:325
+                             images from test set...                            
+                    INFO     INFO:pipeline:Collected 6000 real   pipeline.py:343
+                             images                                             
+                    INFO     INFO:pipeline:Generating 200        pipeline.py:346
+                             samples...                                         
+[11/23/25 20:40:28] INFO     INFO:pipeline:Generated 200 samples pipeline.py:366
+                    INFO     INFO:pipeline:Computing evaluation  pipeline.py:369
+                             metrics...                                         
+                    INFO     INFO:pipeline:Computing FID...      pipeline.py:373
+[11/23/25 20:40:31] INFO     INFO:pipeline:Computing Inception   pipeline.py:380
+                             Score...                                           
+                    INFO     INFO:pipeline:Computing SNR...      pipeline.py:385
+[11/23/25 20:40:43] INFO     INFO:pipeline:Final evaluation      pipeline.py:485
+                             results logged to wandb                            
+Running 1 epochs... ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 100% 0:00:00
+Training epoch...                                              0% -:--:--
+Validating epoch...                                            0% -:--:--
+Testing model...    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 100% 0:00:00
+Experiment finished.
+==========================================
+Job completed at: Sun Nov 23 20:40:57 CET 2025
+Exit code: 0
+==========================================

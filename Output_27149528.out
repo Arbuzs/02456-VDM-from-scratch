@@ -1,0 +1,303 @@
+==========================================
+Job ID: 27149528
+Job Name: VDM-From-Scratch
+Start Time: Sun Nov 23 21:42:52 CET 2025
+Running on host: n-62-20-10
+Working directory: /zhome/45/a/168203/02456-VDM-from-scratch
+==========================================
+Python path:
+/zhome/45/a/168203/miniconda3/envs/vdm_env/bin/python
+Starting training...
+Setting up experiment...
+Starting experiment run...
+[11/23/25 21:43:15] INFO     INFO:pipeline:Initializing Weights  pipeline.py:405
+                             & Biases run                                       
+[11/23/25 21:43:16] INFO     INFO:pipeline:Starting experiment   pipeline.py:414
+                    INFO     INFO:pipeline:Clearing CUDA         pipeline.py:418
+                             cache...                                           
+                    INFO     INFO:pipeline:Moving model and loss pipeline.py:421
+                             function to GPU                                    
+[11/23/25 21:45:14] INFO     INFO:pipeline:Saved new best model  pipeline.py:269
+                             (BPD: 4.6479)                                      
+[11/23/25 21:45:15] INFO     INFO:pipeline:Sampling images for   pipeline.py:140
+                             epoch 1...                                         
+                    INFO     INFO:pipeline:Reconstructing images pipeline.py:168
+                             for epoch 1...                                     
+[11/23/25 21:47:14] INFO     INFO:pipeline:Saved new best model  pipeline.py:269
+                             (BPD: 3.9585)                                      
+[11/23/25 21:49:12] INFO     INFO:pipeline:Saved new best model  pipeline.py:269
+                             (BPD: 3.8228)                                      
+[11/23/25 21:51:10] INFO     INFO:pipeline:Saved new best model  pipeline.py:269
+                             (BPD: 3.7297)                                      
+[11/23/25 21:53:08] INFO     INFO:pipeline:Saved new best model  pipeline.py:269
+                             (BPD: 3.6744)                                      
+[11/23/25 21:55:06] INFO     INFO:pipeline:Saved new best model  pipeline.py:269
+                             (BPD: 3.6459)                                      
+[11/23/25 21:57:03] INFO     INFO:pipeline:Saved new best model  pipeline.py:269
+                             (BPD: 3.6029)                                      
+[11/23/25 21:59:01] INFO     INFO:pipeline:Saved new best model  pipeline.py:269
+                             (BPD: 3.5804)                                      
+[11/23/25 22:00:59] INFO     INFO:pipeline:Saved new best model  pipeline.py:269
+                             (BPD: 3.5539)                                      
+[11/23/25 22:02:57] INFO     INFO:pipeline:Saved new best model  pipeline.py:269
+                             (BPD: 3.5365)                                      
+                    INFO     INFO:pipeline:Sampling images for   pipeline.py:140
+                             epoch 10...                                        
+[11/23/25 22:02:58] INFO     INFO:pipeline:Reconstructing images pipeline.py:168
+                             for epoch 10...                                    
+[11/23/25 22:04:57] INFO     INFO:pipeline:Saved new best model  pipeline.py:269
+                             (BPD: 3.5117)                                      
+[11/23/25 22:06:55] INFO     INFO:pipeline:Saved new best model  pipeline.py:269
+                             (BPD: 3.4924)                                      
+[11/23/25 22:08:53] INFO     INFO:pipeline:Saved new best model  pipeline.py:269
+                             (BPD: 3.4754)                                      
+[11/23/25 22:10:50] INFO     INFO:pipeline:Saved new best model  pipeline.py:269
+                             (BPD: 3.4740)                                      
+[11/23/25 22:12:48] INFO     INFO:pipeline:Saved new best model  pipeline.py:269
+                             (BPD: 3.4546)                                      
+[11/23/25 22:14:46] INFO     INFO:pipeline:Saved new best model  pipeline.py:269
+                             (BPD: 3.4418)                                      
+[11/23/25 22:16:44] INFO     INFO:pipeline:Saved new best model  pipeline.py:269
+                             (BPD: 3.4382)                                      
+[11/23/25 22:18:42] INFO     INFO:pipeline:Saved new best model  pipeline.py:269
+                             (BPD: 3.4261)                                      
+[11/23/25 22:20:40] INFO     INFO:pipeline:Saved new best model  pipeline.py:269
+                             (BPD: 3.4060)                                      
+[11/23/25 22:22:37] INFO     INFO:pipeline:Sampling images for   pipeline.py:140
+                             epoch 20...                                        
+[11/23/25 22:22:38] INFO     INFO:pipeline:Reconstructing images pipeline.py:168
+                             for epoch 20...                                    
+[11/23/25 22:24:38] INFO     INFO:pipeline:Saved new best model  pipeline.py:269
+                             (BPD: 3.3912)                                      
+[11/23/25 22:28:33] INFO     INFO:pipeline:Saved new best model  pipeline.py:269
+                             (BPD: 3.3822)                                      
+[11/23/25 22:30:31] INFO     INFO:pipeline:Saved new best model  pipeline.py:269
+                             (BPD: 3.3792)                                      
+[11/23/25 22:32:30] INFO     INFO:pipeline:Saved new best model  pipeline.py:269
+                             (BPD: 3.3680)                                      
+[11/23/25 22:34:28] INFO     INFO:pipeline:Saved new best model  pipeline.py:269
+                             (BPD: 3.3629)                                      
+[11/23/25 22:36:26] INFO     INFO:pipeline:Saved new best model  pipeline.py:269
+                             (BPD: 3.3528)                                      
+[11/23/25 22:38:24] INFO     INFO:pipeline:Saved new best model  pipeline.py:269
+                             (BPD: 3.3506)                                      
+[11/23/25 22:40:22] INFO     INFO:pipeline:Saved new best model  pipeline.py:269
+                             (BPD: 3.3430)                                      
+[11/23/25 22:42:20] INFO     INFO:pipeline:Saved new best model  pipeline.py:269
+                             (BPD: 3.3317)                                      
+                    INFO     INFO:pipeline:Sampling images for   pipeline.py:140
+                             epoch 30...                                        
+[11/23/25 22:42:21] INFO     INFO:pipeline:Reconstructing images pipeline.py:168
+                             for epoch 30...                                    
+[11/23/25 22:46:17] INFO     INFO:pipeline:Saved new best model  pipeline.py:269
+                             (BPD: 3.3300)                                      
+[11/23/25 22:50:13] INFO     INFO:pipeline:Saved new best model  pipeline.py:269
+                             (BPD: 3.3172)                                      
+[11/23/25 22:54:09] INFO     INFO:pipeline:Saved new best model  pipeline.py:269
+                             (BPD: 3.3119)                                      
+[11/23/25 22:56:07] INFO     INFO:pipeline:Saved new best model  pipeline.py:269
+                             (BPD: 3.3104)                                      
+[11/23/25 22:58:05] INFO     INFO:pipeline:Saved new best model  pipeline.py:269
+                             (BPD: 3.3025)                                      
+[11/23/25 23:00:03] INFO     INFO:pipeline:Saved new best model  pipeline.py:269
+                             (BPD: 3.2923)                                      
+[11/23/25 23:02:01] INFO     INFO:pipeline:Saved new best model  pipeline.py:269
+                             (BPD: 3.2899)                                      
+                    INFO     INFO:pipeline:Sampling images for   pipeline.py:140
+                             epoch 40...                                        
+[11/23/25 23:02:02] INFO     INFO:pipeline:Reconstructing images pipeline.py:168
+                             for epoch 40...                                    
+[11/23/25 23:05:59] INFO     INFO:pipeline:Saved new best model  pipeline.py:269
+                             (BPD: 3.2874)                                      
+[11/23/25 23:07:57] INFO     INFO:pipeline:Saved new best model  pipeline.py:269
+                             (BPD: 3.2830)                                      
+[11/23/25 23:09:55] INFO     INFO:pipeline:Saved new best model  pipeline.py:269
+                             (BPD: 3.2818)                                      
+[11/23/25 23:11:53] INFO     INFO:pipeline:Saved new best model  pipeline.py:269
+                             (BPD: 3.2762)                                      
+[11/23/25 23:13:52] INFO     INFO:pipeline:Saved new best model  pipeline.py:269
+                             (BPD: 3.2759)                                      
+[11/23/25 23:15:50] INFO     INFO:pipeline:Saved new best model  pipeline.py:269
+                             (BPD: 3.2671)                                      
+[11/23/25 23:19:45] INFO     INFO:pipeline:Saved new best model  pipeline.py:269
+                             (BPD: 3.2652)                                      
+[11/23/25 23:21:43] INFO     INFO:pipeline:Saved new best model  pipeline.py:269
+                             (BPD: 3.2629)                                      
+                    INFO     INFO:pipeline:Sampling images for   pipeline.py:140
+                             epoch 50...                                        
+[11/23/25 23:21:44] INFO     INFO:pipeline:Reconstructing images pipeline.py:168
+                             for epoch 50...                                    
+[11/23/25 23:25:40] INFO     INFO:pipeline:Saved new best model  pipeline.py:269
+                             (BPD: 3.2564)                                      
+[11/23/25 23:29:36] INFO     INFO:pipeline:Saved new best model  pipeline.py:269
+                             (BPD: 3.2547)                                      
+[11/23/25 23:31:34] INFO     INFO:pipeline:Saved new best model  pipeline.py:269
+                             (BPD: 3.2482)                                      
+[11/23/25 23:35:29] INFO     INFO:pipeline:Saved new best model  pipeline.py:269
+                             (BPD: 3.2476)                                      
+[11/23/25 23:37:27] INFO     INFO:pipeline:Saved new best model  pipeline.py:269
+                             (BPD: 3.2434)                                      
+[11/23/25 23:39:25] INFO     INFO:pipeline:Saved new best model  pipeline.py:269
+                             (BPD: 3.2420)                                      
+[11/23/25 23:41:22] INFO     INFO:pipeline:Sampling images for   pipeline.py:140
+                             epoch 60...                                        
+[11/23/25 23:41:23] INFO     INFO:pipeline:Reconstructing images pipeline.py:168
+                             for epoch 60...                                    
+[11/23/25 23:43:22] INFO     INFO:pipeline:Saved new best model  pipeline.py:269
+                             (BPD: 3.2374)                                      
+[11/23/25 23:45:20] INFO     INFO:pipeline:Saved new best model  pipeline.py:269
+                             (BPD: 3.2358)                                      
+[11/23/25 23:47:18] INFO     INFO:pipeline:Saved new best model  pipeline.py:269
+                             (BPD: 3.2278)                                      
+[11/23/25 23:53:11] INFO     INFO:pipeline:Saved new best model  pipeline.py:269
+                             (BPD: 3.2258)                                      
+[11/23/25 23:55:09] INFO     INFO:pipeline:Saved new best model  pipeline.py:269
+                             (BPD: 3.2242)                                      
+[11/23/25 23:59:04] INFO     INFO:pipeline:Saved new best model  pipeline.py:269
+                             (BPD: 3.2171)                                      
+[11/24/25 00:01:02] INFO     INFO:pipeline:Saved new best model  pipeline.py:269
+                             (BPD: 3.2103)                                      
+                    INFO     INFO:pipeline:Sampling images for   pipeline.py:140
+                             epoch 70...                                        
+[11/24/25 00:01:03] INFO     INFO:pipeline:Reconstructing images pipeline.py:168
+                             for epoch 70...                                    
+[11/24/25 00:10:52] INFO     INFO:pipeline:Saved new best model  pipeline.py:269
+                             (BPD: 3.2070)                                      
+[11/24/25 00:12:50] INFO     INFO:pipeline:Saved new best model  pipeline.py:269
+                             (BPD: 3.2067)                                      
+[11/24/25 00:14:48] INFO     INFO:pipeline:Saved new best model  pipeline.py:269
+                             (BPD: 3.2041)                                      
+[11/24/25 00:20:40] INFO     INFO:pipeline:Saved new best model  pipeline.py:269
+                             (BPD: 3.1979)                                      
+                    INFO     INFO:pipeline:Sampling images for   pipeline.py:140
+                             epoch 80...                                        
+[11/24/25 00:20:41] INFO     INFO:pipeline:Reconstructing images pipeline.py:168
+                             for epoch 80...                                    
+[11/24/25 00:22:40] INFO     INFO:pipeline:Saved new best model  pipeline.py:269
+                             (BPD: 3.1951)                                      
+[11/24/25 00:28:33] INFO     INFO:pipeline:Saved new best model  pipeline.py:269
+                             (BPD: 3.1915)                                      
+[11/24/25 00:30:31] INFO     INFO:pipeline:Saved new best model  pipeline.py:269
+                             (BPD: 3.1869)                                      
+[11/24/25 00:34:26] INFO     INFO:pipeline:Saved new best model  pipeline.py:269
+                             (BPD: 3.1844)                                      
+[11/24/25 00:36:25] INFO     INFO:pipeline:Saved new best model  pipeline.py:269
+                             (BPD: 3.1814)                                      
+[11/24/25 00:38:22] INFO     INFO:pipeline:Saved new best model  pipeline.py:269
+                             (BPD: 3.1799)                                      
+[11/24/25 00:40:20] INFO     INFO:pipeline:Sampling images for   pipeline.py:140
+                             epoch 90...                                        
+[11/24/25 00:40:21] INFO     INFO:pipeline:Reconstructing images pipeline.py:168
+                             for epoch 90...                                    
+[11/24/25 00:42:20] INFO     INFO:pipeline:Saved new best model  pipeline.py:269
+                             (BPD: 3.1772)                                      
+[11/24/25 00:48:12] INFO     INFO:pipeline:Saved new best model  pipeline.py:269
+                             (BPD: 3.1758)                                      
+[11/24/25 00:50:10] INFO     INFO:pipeline:Saved new best model  pipeline.py:269
+                             (BPD: 3.1748)                                      
+[11/24/25 00:52:08] INFO     INFO:pipeline:Saved new best model  pipeline.py:269
+                             (BPD: 3.1706)                                      
+[11/24/25 00:56:04] INFO     INFO:pipeline:Saved new best model  pipeline.py:269
+                             (BPD: 3.1695)                                      
+[11/24/25 00:58:02] INFO     INFO:pipeline:Saved new best model  pipeline.py:269
+                             (BPD: 3.1685)                                      
+[11/24/25 00:59:59] INFO     INFO:pipeline:Sampling images for   pipeline.py:140
+                             epoch 100...                                       
+[11/24/25 01:00:00] INFO     INFO:pipeline:Reconstructing images pipeline.py:168
+                             for epoch 100...                                   
+[11/24/25 01:01:59] INFO     INFO:pipeline:Saved new best model  pipeline.py:269
+                             (BPD: 3.1631)                                      
+[11/24/25 01:03:57] INFO     INFO:pipeline:Saved new best model  pipeline.py:269
+                             (BPD: 3.1570)                                      
+[11/24/25 01:09:50] INFO     INFO:pipeline:Saved new best model  pipeline.py:269
+                             (BPD: 3.1539)                                      
+[11/24/25 01:15:43] INFO     INFO:pipeline:Saved new best model  pipeline.py:269
+                             (BPD: 3.1513)                                      
+[11/24/25 01:19:38] INFO     INFO:pipeline:Saved new best model  pipeline.py:269
+                             (BPD: 3.1449)                                      
+                    INFO     INFO:pipeline:Sampling images for   pipeline.py:140
+                             epoch 110...                                       
+[11/24/25 01:19:39] INFO     INFO:pipeline:Reconstructing images pipeline.py:168
+                             for epoch 110...                                   
+[11/24/25 01:31:25] INFO     INFO:pipeline:Saved new best model  pipeline.py:269
+                             (BPD: 3.1443)                                      
+[11/24/25 01:35:20] INFO     INFO:pipeline:Saved new best model  pipeline.py:269
+                             (BPD: 3.1432)                                      
+[11/24/25 01:37:19] INFO     INFO:pipeline:Saved new best model  pipeline.py:269
+                             (BPD: 3.1422)                                      
+[11/24/25 01:39:16] INFO     INFO:pipeline:Sampling images for   pipeline.py:140
+                             epoch 120...                                       
+[11/24/25 01:39:17] INFO     INFO:pipeline:Reconstructing images pipeline.py:168
+                             for epoch 120...                                   
+[11/24/25 01:41:16] INFO     INFO:pipeline:Saved new best model  pipeline.py:269
+                             (BPD: 3.1366)                                      
+[11/24/25 01:51:04] INFO     INFO:pipeline:Saved new best model  pipeline.py:269
+                             (BPD: 3.1356)                                      
+[11/24/25 01:53:02] INFO     INFO:pipeline:Saved new best model  pipeline.py:269
+                             (BPD: 3.1336)                                      
+[11/24/25 01:56:57] INFO     INFO:pipeline:Saved new best model  pipeline.py:269
+                             (BPD: 3.1336)                                      
+[11/24/25 01:58:56] INFO     INFO:pipeline:Saved new best model  pipeline.py:269
+                             (BPD: 3.1321)                                      
+                    INFO     INFO:pipeline:Sampling images for   pipeline.py:140
+                             epoch 130...                                       
+                    INFO     INFO:pipeline:Reconstructing images pipeline.py:168
+                             for epoch 130...                                   
+[11/24/25 02:00:55] INFO     INFO:pipeline:Saved new best model  pipeline.py:269
+                             (BPD: 3.1311)                                      
+[11/24/25 02:06:48] INFO     INFO:pipeline:Saved new best model  pipeline.py:269
+                             (BPD: 3.1305)                                      
+[11/24/25 02:08:47] INFO     INFO:pipeline:Saved new best model  pipeline.py:269
+                             (BPD: 3.1281)                                      
+[11/24/25 02:10:45] INFO     INFO:pipeline:Saved new best model  pipeline.py:269
+                             (BPD: 3.1259)                                      
+[11/24/25 02:12:43] INFO     INFO:pipeline:Saved new best model  pipeline.py:269
+                             (BPD: 3.1210)                                      
+[11/24/25 02:18:35] INFO     INFO:pipeline:Sampling images for   pipeline.py:140
+                             epoch 140...                                       
+[11/24/25 02:18:36] INFO     INFO:pipeline:Reconstructing images pipeline.py:168
+                             for epoch 140...                                   
+[11/24/25 02:26:27] INFO     INFO:pipeline:Saved new best model  pipeline.py:269
+                             (BPD: 3.1170)                                      
+[11/24/25 02:30:23] INFO     INFO:pipeline:Saved new best model  pipeline.py:269
+                             (BPD: 3.1154)                                      
+[11/24/25 02:34:18] INFO     INFO:pipeline:Saved new best model  pipeline.py:269
+                             (BPD: 3.1130)                                      
+[11/24/25 02:38:12] INFO     INFO:pipeline:Sampling images for   pipeline.py:140
+                             epoch 150...                                       
+[11/24/25 02:38:13] INFO     INFO:pipeline:Reconstructing images pipeline.py:168
+                             for epoch 150...                                   
+[11/24/25 02:40:12] INFO     INFO:pipeline:Saved new best model  pipeline.py:269
+                             (BPD: 3.1097)                                      
+[11/24/25 02:48:02] INFO     INFO:pipeline:Saved new best model  pipeline.py:269
+                             (BPD: 3.1092)                                      
+[11/24/25 02:53:55] INFO     INFO:pipeline:Saved new best model  pipeline.py:269
+                             (BPD: 3.1067)                                      
+[11/24/25 02:57:50] INFO     INFO:pipeline:Sampling images for   pipeline.py:140
+                             epoch 160...                                       
+[11/24/25 02:57:51] INFO     INFO:pipeline:Reconstructing images pipeline.py:168
+                             for epoch 160...                                   
+[11/24/25 02:59:50] INFO     INFO:pipeline:Saved new best model  pipeline.py:269
+                             (BPD: 3.1066)                                      
+[11/24/25 03:05:42] INFO     INFO:pipeline:Saved new best model  pipeline.py:269
+                             (BPD: 3.1050)                                      
+[11/24/25 03:09:37] INFO     INFO:pipeline:Saved new best model  pipeline.py:269
+                             (BPD: 3.1019)                                      
+[11/24/25 03:13:32] INFO     INFO:pipeline:Saved new best model  pipeline.py:269
+                             (BPD: 3.1011)                                      
+[11/24/25 03:17:27] INFO     INFO:pipeline:Sampling images for   pipeline.py:140
+                             epoch 170...                                       
+[11/24/25 03:17:28] INFO     INFO:pipeline:Reconstructing images pipeline.py:168
+                             for epoch 170...                                   
+[11/24/25 03:25:19] INFO     INFO:pipeline:Saved new best model  pipeline.py:269
+                             (BPD: 3.0972)                                      
+[11/24/25 03:33:09] INFO     INFO:pipeline:Saved new best model  pipeline.py:269
+                             (BPD: 3.0955)                                      
+[11/24/25 03:35:07] INFO     INFO:pipeline:Saved new best model  pipeline.py:269
+                             (BPD: 3.0955)                                      
+[11/24/25 03:37:05] INFO     INFO:pipeline:Sampling images for   pipeline.py:140
+                             epoch 180...                                       
+[11/24/25 03:37:06] INFO     INFO:pipeline:Reconstructing images pipeline.py:168
+                             for epoch 180...                                   
+[11/24/25 03:39:05] INFO     INFO:pipeline:Saved new best model  pipeline.py:269
+                             (BPD: 3.0951)                                      
